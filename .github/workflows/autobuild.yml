@@ -156,9 +156,9 @@ jobs:
 
       - name: Extract Imath
         run: |
-            tar -xvzf v3.1.8.tar.gz -C ${{github.workspace}}/
-            mv Imath-3.1.8 imath
-            rm v3.1.8.tar.gz
+            tar -xvzf v3.1.9.tar.gz -C ${{github.workspace}}/
+            mv Imath-3.1.9 imath
+            rm v3.1.9.tar.gz
 
       - name: download OpenEXR source code
         uses: suisei-cn/actions-download-file@v1.4.0
