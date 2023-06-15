@@ -30,7 +30,7 @@ jobs:
       with:
         delete_release: true
         tag_name: "nightly"
-        github_token: ${{ secrets.TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
       #env:
       #  repo-token: ${{ secrets.GITHUB_TOKEN }}
       if: github.event_name == 'push'
@@ -53,7 +53,7 @@ jobs:
         release_name: "nightly"
         draft: false
         prerelease: false
-        github_token: ${{ secrets.TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
       if: github.event_name == 'push'
 
   build_wheels:
