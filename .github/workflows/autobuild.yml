@@ -160,17 +160,22 @@ jobs:
             mv Imath-3.1.9 imath
             rm v3.1.9.tar.gz
 
-      - name: download OpenEXR source code
-        uses: suisei-cn/actions-download-file@v1.4.0
-        with:
-          url: https://github.com/AcademySoftwareFoundation/openexr/archive/refs/tags/v3.1.8.tar.gz
-          target: ${{github.workspace}}/
+      #- name: download OpenEXR source code
+      #  uses: suisei-cn/actions-download-file@v1.4.0
+      #  with:
+      #    url: https://github.com/AcademySoftwareFoundation/openexr/archive/refs/tags/v3.1.8.tar.gz
+      #    target: ${{github.workspace}}/
+      #
+      #- name: Extract OpenEXR
+      #  run: |
+      #      tar -xvzf v3.1.8.tar.gz -C ${{github.workspace}}/
+      #      mv openexr-3.1.8 openexr
+      #      rm v3.1.8.tar.gz
+      - name: Create openexr directory
+        run: mkdir ${{github.workspace}}/openexr
 
-      - name: Extract OpenEXR
-        run: |
-            tar -xvzf v3.1.8.tar.gz -C ${{github.workspace}}/
-            mv openexr-3.1.8 openexr
-            rm v3.1.8.tar.gz
+      - name: Download OpenEXR repository
+        run: git clone https://github.com/AcademySoftwareFoundation/openexr.git ${{github.workspace}}/openexr
 
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
