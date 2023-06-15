@@ -1,6 +1,16 @@
 name: Wheels
 
 on:
+  workflow_dispatch:
+    inputs:
+      system:
+        type: choice
+        description: System
+        options: 
+        - '["windows-latest"]'
+        - '["ubuntu-22.04"]'
+        - '["macos-latest"]'
+        - '["macos-latest", "ubuntu-22.04", "windows-latest"]'
   push:
     branches: [ $default-branch, main ]
 
@@ -51,7 +61,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04, windows-latest, macOS-latest]
+        os: ${{ fromJson(github.event.inputs.system) }}
     env:
       # Skip 32-bit wheels builds
       CIBW_SKIP: "*-win32 *_i686"
